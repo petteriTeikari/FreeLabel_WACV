@@ -4,6 +4,8 @@ Dias, Philipe Ambrozio, Zhou Shen, Amy Tabb, and Henry Medeiros. **"Freelabel: A
 
 This repository forked from https://bitbucket.org/phil_dias/freelabel-wacv/src/master/
 
+Available under the Non-Profit Open Software License: for more details https://opensource.org/licenses/NPOSL-3.0
+
 ## PETTERI: Instructions
 
 ### Prerequisites
