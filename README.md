@@ -34,13 +34,21 @@ python manage.py runserver 0.0.0.0:9000
 ![alt text](https://raw.githubusercontent.com/petteriTeikari/FreeLabel_WACV/master/figures/ignoreThisWarning.png)
 
 10. Login with these details
-11. Hit **"Play!"**
+11. Hit **"Play!"** (with defaults you might for example get this)
+
+![alt text](https://raw.githubusercontent.com/petteriTeikari/FreeLabel_WACV/master/figures/pascalVOC_default.png)
 
 ##### How to customize
 
 Check [Notes_on_FreeLabel.pdf](https://github.com/petteriTeikari/FreeLabel_WACV/blob/master/Notes_on_FreeLabel.pdf) for how the software is designed. 
 
 1) You probably want to use your custom images instead of the PASCAL VOC images, images are defined on `imgList2.txt` imported from [`views.py`](https://github.com/petteriTeikari/FreeLabel_WACV/blob/69fcba110269886a31d660bc9409bb3a7bf388ee/freelabel/views.py#L46), which in default refer to some Google Drive files. `Note!` hard-coded separators `/` for paths, so forget about using Windows without customizing the code :P
+
+![alt text](hhttps://raw.githubusercontent.com/petteriTeikari/FreeLabel_WACV/master/figures/googleDriveID.png)
+
+2) TODO! a simple image list switch does not do the trick for our custom images :( with at least `main.js:211 Uncaught TypeError: Cannot read property 'length' of undefinedat createAgainList (main.js:211)` occurring first
+
+![alt text](hhttps://raw.githubusercontent.com/petteriTeikari/FreeLabel_WACV/master/figures/googleDriveID.png)
 
 ##### Troubleshooting
 
