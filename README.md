@@ -1,5 +1,9 @@
 # FreeLabel: A Publicly Available Annotation Tool based on Freehand Traces
 
+Dias, Philipe Ambrozio, Zhou Shen, Amy Tabb, and Henry Medeiros. **"Freelabel: A publicly available annotation tool based on freehand traces."** In *2019 IEEE Winter Conference on Applications of Computer Vision (WACV)*, pp. 21-30. IEEE, 2019. https://doi.org/10.1109/WACV.2019.00010
+
+This repository forked from https://bitbucket.org/phil_dias/freelabel-wacv/src/master/
+
 ## PETTERI: Instructions
 
 ### Prerequisites
@@ -55,7 +59,3 @@ Check [Notes_on_FreeLabel.pdf](https://github.com/petteriTeikari/FreeLabel_WACV/
 ##### Troubleshooting
 
 If you get with "7) Django", the following `ValueError: numpy.ufunc has the wrong size, try recompiling. Expected 192, got 216`, came from re-compiling FreeLab before step "6)" causing the mismatch with NumPy versions. Delete the `build` and re-build. 
-
-## Original README.MD
-
-See https://bitbucket.org/phil_dias/freelabel-wacv/src/master/
