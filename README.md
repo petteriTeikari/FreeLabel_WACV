@@ -2,7 +2,7 @@
 
 Dias, Philipe Ambrozio, Zhou Shen, Amy Tabb, and Henry Medeiros. **"Freelabel: A publicly available annotation tool based on freehand traces."** In *2019 IEEE Winter Conference on Applications of Computer Vision (WACV)*, pp. 21-30. IEEE, 2019. https://doi.org/10.1109/WACV.2019.00010
 
-This repository forked from https://bitbucket.org/phil_dias/freelabel-wacv/src/master/
+This repository forked from [BitBucket](https://bitbucket.org/phil_dias/freelabel-wacv/src/master/) / https://github.com/philadias/freelabel
 
 Available under the Non-Profit Open Software License: for more details https://opensource.org/licenses/NPOSL-3.0
 
