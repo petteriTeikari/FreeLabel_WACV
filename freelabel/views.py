@@ -107,8 +107,13 @@ def loadcustom(request):
 
     username = request.user.username
 
-    # get list of files in folder of custom dataset( IT IS ASSUMING JPG HERE, CHANGE AS NEEDED)
-    imgList = [os.path.basename(x) for x in glob.glob(localFolder+"*.jpg")]
+    # get list of files in folder of custom dataset
+    ext = "*.png"
+    print('Getting the files from localfolder = "' + localFolder +
+          '" with the extension = ' + ext)
+	
+    imgList = [os.path.basename(x) for x in glob.glob(os.path.join(localFolder, ext))]
+    print('imgList:')
     print(imgList)
 
     # load text file with list of categories in the dataset

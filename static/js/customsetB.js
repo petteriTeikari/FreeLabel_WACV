@@ -13,8 +13,10 @@
     // initialize mouse cursor as pencil by default
     document.body.style.cursor = "url('/static/images/pencil"+document.getElementById('dsize').value+".png') 0 0, default";    
 
-    var folderpath = prompt("Path to your dataset", "/home/philipe/Pictures/test3/");
-    datasetname = prompt("Name of your dataset", "custom");
+    var base_dir = window.location.pathname.replace(/[\\\/][^\\\/]*$/, '');
+    console.log('base_dir = ' + base_dir)
+    var folderpath = prompt("Path to your dataset", "/home/petteri/Dropbox/manuscriptDrafts/CThemorr/CT_external_sets/FreeLabel_WACV/dataExamples_Qure500pngs");
+    datasetname = prompt("Name of your dataset", "Qure500_test");
 
     // AJAX call to loadlist() in views.py to get list of images, gt, bboxes, categories 
     $.ajax({
@@ -36,8 +38,11 @@
           // populate corresponding arrays with info loaded from the .txt files
           for (var j = 0, len = lines.length; j < len; j++) {
             imgArray[j] = "http://0.0.0.0:"+PORT+"/"+lines[j];
-            localPathArray[j] = localfolder_+lines[j];            
+            localPathArray[j] = localfolder_+"/"+lines[j];            
           }
+
+	  console.log("imgArray = " + imgArray); 
+	  console.log("localPathArray = " + localPathArray); 
 
           // same for the randomly shuffled list of image IDs
           var lines = resp.idsList;        
@@ -45,12 +50,14 @@
           for (var j = 0, len = lines.length; j < len; j++) {
             listIDs[j] = parseInt(lines[j]);
           }
+          console.log("listIDs = " + catArray);
 
           // populate array with list of categories
           var lines = resp.catList;                  
           for (var j = 0, len = lines.length; j < len; j++) {
             catArray[j] = lines[j];
           }
+	  console.log("catArray = " + catArray);
 
           // set i with index of next image to be loaded
           i = parseInt(resp.nextId);
@@ -187,7 +194,9 @@
       // clear URL of mask image on bottom canvas
       document.getElementById("maskImg").src = '#';
       // get image URL according to index i and the randomly permuted list 
+      console.log("reading pic from = " + listIDs[i]); 
       var pic = imgArray[listIDs[i]];
+
       // set image URL to image element on bottom canvas
       document.getElementById("initial").src = pic.replace();
       var img = document.getElementById("initial");
