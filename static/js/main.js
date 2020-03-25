@@ -28,21 +28,15 @@
           var linesIds = resp.idsList;
           // populate corresponding arrays with info loaded from the .txt files
           for (var j = 0, len = lines.length; j < len; j++) {
-            imgArray[j] = 'https://drive.google.com/uc?id=' + lines[j];            
-            console.log("Reading in " + lines[j]);
-	    // Quick fix by Petteri, extra "static" to highlight what is the base folder actually
-            // imgArray[j] = '/static/../../Qure500_png_slices/' + lines[j];
-            console.log("  ... fullpath = " + imgArray[j]);
+            imgArray[j] = 'https://drive.google.com/uc?id=' + lines[j];
             gtArray[j] = 'https://drive.google.com/uc?id=' + linesGT[j];
             bbArray[j] = 'https://drive.google.com/uc?id=' + linesBB[j];
 
             //convert from string to int array, numbers separated by comma
             var intCls = linesCls[j].split(",").map(Number); 
-            console.log("  ... intCls = " + intCls);
 
             // push each element into array 
             clsArray.push(intCls) 
-            console.log("  ... clsArray = " + clsArray);
           }
           
           // same for the list of categories
@@ -181,12 +175,7 @@
   }  
 
   function createAgainList(){
-
-      console.log("Create againList, length(listIDs) = " + listIDs.length);	
-      console.log("Create againList, listIDs[i] = " + listIDs[i]);
-
       var cls_ = clsArray[listIDs[i]]; //number of existed elements in current image
-      console.log("cls_ = " + cls_);
 
       // remove rest elements from current array
       for (var ii = 2; ii < 22; ii++)
