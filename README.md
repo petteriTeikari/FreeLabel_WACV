@@ -1,67 +1,64 @@
-FreeLabel: A Publicly Available Annotation Tool based on Freehand Traces
+# FreeLabel: A Publicly Available Annotation Tool based on Freehand Traces
 
-## Underlying ideas: the paper
-This README file is to accompany code for pixel-level image annotation, lead by Philipe Dias to his paper: FreeLabel: A Publicly Available Annotation Tool based on Freehand Traces published in [WACV 2019](https://ieeexplore.ieee.org/document/8659167):
+Dias, Philipe Ambrozio, Zhou Shen, Amy Tabb, and Henry Medeiros. **"Freelabel: A publicly available annotation tool based on freehand traces."** In *2019 IEEE Winter Conference on Applications of Computer Vision (WACV)*, pp. 21-30. IEEE, 2019. https://doi.org/10.1109/WACV.2019.00010
 
+This repository forked from [BitBucket](https://bitbucket.org/phil_dias/freelabel-wacv/src/master/) / https://github.com/philadias/freelabel/tree/beta_custom_datasets
+
+Available under the Non-Profit Open Software License: for more details https://opensource.org/licenses/NPOSL-3.0
+
+## PETTERI: Instructions
+
+### Prerequisites
+
+1) Anaconda Python 3.x Individual Edition, https://www.anaconda.com/distribution/, e.g. download the [graphical macOS installer](https://docs.anaconda.com/anaconda/install/mac-os/)
+
+### When you have the prerequisites done
+
+#### Ubuntu
+
+1. Clone this repo
+2. Create the virtual environment
+3. Activate the virtual environment
+4. Upgrade your pip
+5. Install the required libraries for FreeLabel
+6. Recompile freelabel for your machine
+7. Run the Django project (gets the server running at background)
+
+```bash
+git clone https://github.com/petteriTeikari/FreeLabel_WACV
+conda create -n freelabel_venv python=3.6
+conda activate freelabel_venv
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+cd freelabel && python setup.py build_ext --inplace && cd ..
+python manage.py runserver 0.0.0.0:9000
 ```
-@INPROCEEDINGS{8659167,
-author={P. A. {Dias} and Z. {Shen} and A. {Tabb} and H. {Medeiros}},
-booktitle={2019 IEEE Winter Conference on Applications of Computer Vision (WACV)},
-title={FreeLabel: A Publicly Available Annotation Tool Based on Freehand Traces},
-year={2019},
-volume={},
-number={},
-pages={21-30},
-keywords={computer vision;image segmentation;Internet;learning (artificial intelligence);public domain software;user interfaces;freehand scribbles;FreeLabel;intuitive open-source Web interface;agricultural domain;high-quality segmentation masks;deep learning models;image understanding tasks;image segmentation datasets;large-scale annotation;freehand traces;image dataset;private annotation;crowdsourced annotation;PASCAL dataset;Image segmentation;Tools;Labeling;Training;Task analysis;Level set;Image color analysis},
-doi={10.1109/WACV.2019.00010},
-ISSN={1550-5790},
-month={Jan},}
-```
-This paper is also available from arXiv:1902.06806 [cs.CV] [here](https://arxiv.org/abs/1902.06806). The arxiv version is identical in content to the IEEE version.
 
-## Citing the code
-The code may be used according to the license below.  If the results of the code are used as a part of a system described in a publication, we request that the authors cite the published paper at a minimum. 
+8. Now that you have the server running, you can go to your browser: http://localhost:9000/freelabel/
+9. Create username/password (you just get an own folder under `static`), does not matter if you get security alert, like:
 
-### Disclaimer: this project is the first experience of the involved students with Javascript and Django. Despite our efforts to keep it fairly organized and functional, there is significant room for improvement. We appreciate any feedback for improving the tool, but cannot provide any type of support/warranty
+![alt text](https://raw.githubusercontent.com/petteriTeikari/FreeLabel_WACV/master/figures/ignoreThisWarning.png)
 
-### Available under the Non-Profit Open Software License: for more details https://opensource.org/licenses/NPOSL-3.0
 
-## Notes on code organization: check Notes_on_FreeLabel.pdf
 
-## Requirements:
-- python3 and corresponding pip3
-- virtualenv, which can be installed through 'pip install virtualenv' (see https://virtualenv.pypa.io/en/latest/installation/)
+10. Login with these details
+11. Hit **"Play!"** (with defaults you might for example get this)
 
-## Download, configuration and deploying the interface:
-1. clone repository
-2. cd freelabel-wacv/
-3. create virtual environment: virtualenv . (if you have multiple python versions, run: virtualenv -p python3 .)
-4. enter virtual environment: source ./bin/activate
-5. install requirements: pip install -r requirements.txt (if it fails, try upgrading pip: pip install --upgrade pip)
-6. Recompile callRGR: 
-	- cd freelabel
-	- python setup.py build_ext --inplace
-	- cd ..
-	
-7. run Django project: python manage.py runserver 0.0.0.0:9000
+![alt text](https://raw.githubusercontent.com/petteriTeikari/FreeLabel_WACV/master/figures/pascalVOC_default.png)
 
----
+##### How to customize
 
-## Accessing the interface:
-1. access http://localhost:9000/freelabel/
-2. register user/password (no need for email)
-2. login with registered user
-3. Done!
+Check [Notes_on_FreeLabel.pdf](https://github.com/petteriTeikari/FreeLabel_WACV/blob/master/Notes_on_FreeLabel.pdf) for how the software is designed. 
 
-## Working with custom datasets (added March 25th 2020)
-The branch 'beta_custom_datasets' now supports annotating images from a local folder. Some comments:
-- In addition to the images to be annotated, insert in your local folder a file named 'categories.txt' that contains the categories to be annotated. It follows the PASCAL standard, with one category per line. One example file was added to this repository.
-	
-- The code is set to deal with .jpg images. To change the extention, edit line 111 of ./freelabel/views.py, in function loadcustom
+1) You probably want to use your custom images instead of the PASCAL VOC images, images are defined on `imgList2.txt` imported from [`views.py`](https://github.com/petteriTeikari/FreeLabel_WACV/blob/69fcba110269886a31d660bc9409bb3a7bf388ee/freelabel/views.py#L46), which in default refer to some Google Drive files. `Note!` hard-coded separators `/` for paths, so forget about using Windows without customizing the code :P
 
-- Colors assigned to each category are defined in 'static/js/base.js', function 'color_choose()'
+![alt text](https://raw.githubusercontent.com/petteriTeikari/FreeLabel_WACV/master/figures//googleDriveID.png)
 
-## Accelerate refinement time if needed
-- If the code crashes when calling the refinement function, very likely its due to timeout. Thera are two options to overcome this:
-1. decrease the number of refinement iterations, which is defined as "numSets" in ourLib.py (function main, line 107)
-2. increase the timeout threshold in .js files (customsetB.js function callRefineCustom, base.js function callRefine)
+2) TODO! a simple image list switch does not do the trick for our custom images :( with at least `main.js:211 Uncaught TypeError: Cannot read property 'length' of undefinedat createAgainList (main.js:211)` occurring first
+
+![alt text](https://raw.githubusercontent.com/petteriTeikari/FreeLabel_WACV/master/figures/createAgainList_bug.png)
+
+##### Troubleshooting
+
+If you get with "7) Django", the following `ValueError: numpy.ufunc has the wrong size, try recompiling. Expected 192, got 216`, came from re-compiling FreeLab before step "6)" causing the mismatch with NumPy versions. Delete the `build` and re-build. 
+
